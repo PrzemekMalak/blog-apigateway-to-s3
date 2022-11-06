@@ -65,41 +65,6 @@ export class ApiGtwS3Stack extends Stack {
 
         const putFileMethod = this.addPutMethod(resource, apiIntegration);
 
-//        const plan = this.addUsagePlan(api);
-
-//        this.addApiKey(api, plan, putFileMethod);
-    }
-
-    private addApiKey(api: RestApi, plan: UsagePlan, putFileMethod: Method) {
-        const key = api.addApiKey('ApiKey');
-        plan.addApiKey(key);
-        plan.addApiStage({
-            stage: api.deploymentStage,
-            throttle: [
-                {
-                    method: putFileMethod,
-                    throttle: {
-                        rateLimit: 10,
-                        burstLimit: 2
-                    }
-                }
-            ]
-        });
-    }
-
-    private addUsagePlan(api: RestApi) {
-        const plan = api.addUsagePlan('UsagePlan', {
-            name: 'S3-plan',
-            throttle: {
-                rateLimit: 10,
-                burstLimit: 2
-            },
-            quota: {
-                limit: 200,
-                period: Period.DAY
-            }
-        });
-        return plan;
     }
 
     private addPutMethod(resource: Resource, apiIntegration: AwsIntegration) {
