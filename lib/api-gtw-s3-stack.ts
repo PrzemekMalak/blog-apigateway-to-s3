@@ -23,7 +23,7 @@ export class ApiGtwS3Stack extends Stack {
 // Tags
 
         Tags.of(this).add('Name', 'S3 Proxy Api');
-        Tags.of(this).add('Owner', 'ex.malak.przemyslaw@oerlikon.com');
+        Tags.of(this).add('Owner', 'przemek.malak@example.com');
 
 // S3 Bucket
 
